@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Filters Pattern in Nette Database | Tomáš Votruba</title>
+        <meta charset="utf-8">
+        <meta name="robots" content="index, follow">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Filters Pattern in Nette Database">
+    <meta property="og:description" content="You want to delete comments, so your readers won&#039;t see any spam or violent content.
+But you want to see them in administration. So you would have to create 2 different methods.
+Today I will show you, how to make only single one.">
+    <meta property="og:url" content="http://www.tomasvotruba.cz/blog/2016/06/17/filters-pattern-in-nette-database">
+        <meta property="og:image" content="http://www.tomasvotruba.cz/assets/images/posts/thumbnail/nette.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Filters Pattern in Nette Database">
+    <meta name="twitter:description" content="You want to delete comments, so your readers won&#039;t see any spam or violent content.
+But you want to see them in administration. So you would have to create 2 different methods.
+Today I will show you, how to make only single one.">
+        <meta name="twitter:image" content="http://www.tomasvotruba.cz/assets/images/posts/thumbnail/nette.png">
+
+        <link rel="alternate" type="application/rss+xml" title="Tomáš Votruba Blog RSS" href="/rss.xml">
+
+        <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <link href="/assets/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+        <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
+
+    <link href="/assets/prism/prism.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+<nav>
+    <div class="container">
+        <ul class="hidden-xs">
+            <li class="logo">
+                <a href="/">Tomáš Votruba</a>
+            </li>
+            <li>
+                <a href="/skoleni">Školím a mentoruji</a>
+            </li>
+            <li>
+                <a href="/reference">Spokojení klienti</a>
+            </li>
+            <li class="active">
+                <a href="/blog">Blog</a>
+            </li>
+            <li>
+                <a href="/cenik">Ceník</a>
+            </li>
+            <li>
+                <a href="/kontakt">Kontakt</a>
+            </li>
+        </ul>
+
+        <div id="mobile-menu" class="row text-center hidden-md hidden-sm hidden-lg">
+            <a href="/" class="col-xs-3">
+                <em class="fa fa-home"></em>
+                <br>
+                Začni
+            </a>
+            <a href="/skoleni" class="col-xs-3">
+                <em class="fa fa-thumbs-up"></em>
+                <br>
+                Školím
+            </a>
+            <a href="/blog" class="col-xs-3 active">
+                <em class="fa fa-book"></em>
+                <br>
+                Píšu blog
+            </a>
+            <a href="/kontakt" class="col-xs-3">
+                <em class="fa fa-phone"></em>
+                <br>
+                Kontakt
+            </a>
+        </div>
+    </div>
+</nav>
+
+        <div class="mainContent">
+    <div class="container" id="post">
+        <h1>Filters Pattern in Nette Database</h1>
+
+<ul class="list-inline">
+    <li>
+        <em class="fa fa-clock-o fa-fw"></em>
+        <strong>4 min</strong>
+    </li>
+
+    <li>
+        <em class="fa fa-calendar fa-fw"></em>
+        <time datetime="2016-06-Fri">
+                17. 6.
+        </time>
+    </li>
+
+    <li>
+        <em class="fa fa-fw fa-comments"></em>
+        <a href="http://tomasvotruba.cz/blog/2016/06/17/filters-pattern-in-nette-database/#disqus_thread">X</a>
+        comments
+    </li>
+
+    <li>
+        <em class="fa fa-fw fa-github"></em>
+
+        <a href="https://github.com/TomasVotruba/tomasvotruba.cz/edit/master/source/_posts/2016/2016-06-17-filters-pattern-in-nette-database.md">
+            Send PR
+        </a>
+    </li>
+</ul>
+
+        <div class="panel panel-default">
+            <div class="panel-body perex">
+                You want to delete comments, so your readers won't see any spam or violent content.
+But you want to see them in administration. So you would have to create 2 different methods.
+Today I will show you, how to make only single one.
+            </div>
+        </div>
+
+        
+
+<h2>Current way to do this</h2>
+
+<p>Let's say we have a <code>CommentRepository</code> class, where we put all methods that work with "comment" table.</p>
+
+<p>In it, we have 2 methods:</p>
+
+<ul>
+<li>1 for frontend</li>
+<li>1 for administration</li>
+</ul>
+
+<pre><code class="language-php">namespace App\Repository;
+
+use Nette\Database\Context;
+use Nette\Database\Table\Selection;
+
+
+class CommentRepository
+{
+
+    /**
+     * @var Selection
+     */
+    private $commentTable;
+
+
+    public function __construct(Context $database)
+    {
+        $this-&gt;commentTable = $database-&gt;table('comment');
+    }
+
+
+    /**
+     * Returns only comments, that are not deleted.
+     */
+    public function fetchCommentsForFrontend()
+    {
+        return $this-&gt;commentTable-&gt;where('is_deleted = ?', FALSE)
+            -&gt;fetchAll();
+    }
+
+
+    public function fetchCommentsForAdministration()
+    {
+        return $this-&gt;commentTable-&gt;fetchAll();
+    }
+
+}
+</code></pre>
+
+<p>And <strong>decide manually</strong>, where to use <code>fetchCommentsForFrontend()</code> and where to use <code>fetchAllCommentsForAdministration()</code>.</p>
+
+<p>This approach is bad practise, because it will eventually <strong>make your every repository class double its size</strong>.</p>
+
+<p>No need for that! This has been already solved somewhere else.</p>
+
+<p>Do you know Doctrine Filters? No? Go check <a href="/blog/2016/04/30/decouple-your-doctrine-filters">this short article to get the clue</a>. I'll wait here.</p>
+
+<h2>Soft delete filter - in theory</h2>
+
+<p>In short, with filters you can modify any query. In our case:</p>
+
+<ul>
+<li>detect if the query is for "comment" table</li>
+<li>detect if we are frontend or backend</li>
+<li>if frontend, add where "is_deleted=0" condition to hide deleted comment</li>
+</ul>
+
+<p>This will influence <strong>every query for "comment" table</strong>.
+So you can be sure you'll never forget to add the condition.</p>
+
+<h2>Show me the code</h2>
+
+<p>There is not much to talk about, because filters are made to be simple. So here is filter:</p>
+
+<pre><code class="language-php"># app/Database/Filter/SoftDeletableFilter.php
+
+namespace App\Database\Filter;
+
+use Nette\Application\Application;
+use Nette\Database\Table\Selection;
+use Zenify\NetteDatabaseFilters\Contract\FilterInterface;
+
+
+class SoftDeletableFilter implements FilterInterface
+{
+
+    public function __construct(Application $application)
+    {
+        $this-&gt;application = $application;
+    }
+
+
+    public function applyFilter(Selection $selection)
+    {
+        // 1. apply only to "comment" table
+        $tableName = $selection-&gt;getName();
+        if ($tableName !== 'comment') {
+            return;
+        }
+
+        // 2. skip for admin presenters
+        // add your custom method, that detects admin presenter via name or class inheritance
+        if ($this-&gt;isAdminPresenter($this-&gt;application-&gt;getPresenter())) {
+            return;
+        }
+
+        // 3. show only visible (not deleted) comments
+        $selection-&gt;where('is_deleted = ?', FALSE);
+    }
+
+}
+</code></pre>
+
+<p>And that's all.</p>
+
+<p>These filters are possible in Nette\Database only thanks to <a href="https://github.com/Zenify/NetteDatabaseFilters">Zenify/NetteDatabaseFilters</a> package.</p>
+
+<p>Do you want to try it for yourself? Let's go.</p>
+
+<h2>Your First Filter in 4 steps</h2>
+
+<h3>1. Install package</h3>
+
+<pre><code class="language-bash">composer require zenify/nette-database-filters
+</code></pre>
+
+<h3>2. Register Extension</h3>
+
+<pre><code class="language-yaml"># app/config/config.neon
+extensions:
+    - Zenify\NetteDatabaseFilters\DI\NetteDatabaseFiltersExtension
+</code></pre>
+
+<h3>3. Create your filter</h3>
+
+<p>The one above...</p>
+
+<h3>4. Register it as a service</h3>
+
+<pre><code class="language-yaml"># app/config/config.neon
+services:
+    - App\Database\Filter\SoftDeletableFilter
+</code></pre>
+
+<p>And that's it! Now your filter will be reflected in whole application.</p>
+
+<p>So you can reduce your repository code and use <code>fetchComments()</code> in all places.</p>
+
+<pre><code class="language-php"># app/Repository/CommentRepository.php
+
+namespace App\Repository;
+
+use Nette\Database\Context;
+use Nette\Database\Table\Selection;
+
+
+class CommentRepository
+{
+
+    /**
+     * @var Selection
+     */
+    private $commentTable;
+
+
+    public function __construct(Context $database)
+    {
+        $this-&gt;commentTable = $database-&gt;table('comment');
+    }
+
+
+    public function fetchComments()
+    {
+        return $this-&gt;commentTable-&gt;fetchAll();
+    }
+
+}
+</code></pre>
+
+<p>For further use just <strong>check Readme for <a href="https://github.com/Zenify/NetteDatabaseFilters#nette-database-filters">Zenify/NetteDatabaseFilters</a></strong>.</p>
+
+<h2>Protip for multiple tables with the same column!</h2>
+
+<p>What if you have <strong>multiple tables with "is_deleted" column</strong>? "comment", "article", "page" table... maybe "banner", "user" in the furture.</p>
+
+<ul>
+<li>Do you have to create filter for every one of them? <strong>No.</strong></li>
+<li><p>Do you have to name them all in the filter class? <strong>No.</strong></p></li>
+<li><p>Do you need to check the column presence only? <strong>YES!</strong></p></li>
+</ul>
+
+<p>And I will show you how do it:</p>
+
+<pre><code class="language-php"># app/Database/Filter/SoftDeletableFilter.php
+
+// ...
+
+public function applyFilter(Selection $selection)
+{
+    if (!$this-&gt;isSoftdelable($selection)) {
+        return;
+    }
+
+    // ... condition code
+}
+
+/**
+ * @return bool
+ */
+private function isSoftdelable(Selection $selection)
+{
+    $selectionToCheck = clone $selection;
+    return $selectionToCheck-&gt;fetch()
+        -&gt;offsetExists('is_deleted');
+}
+</code></pre>
+
+<p>Pretty neat, huh?</p>
+
+<h2>What Have You Learned Today?</h2>
+
+<ul>
+<li>that Database Filters is a pattern for decorating query of specific table</li>
+<li>that Nette Database can implement this pattern in a form of service</li>
+<li>that you can add filter via simple service with <a href="https://github.com/Zenify/NetteDatabaseFilters">Zenify/NetteDatabaseFilters</a></li>
+</ul>
+
+<p>If you have some tips how to this simpler or want to share your experience with filters, just let me know bellow.</p>
+
+<p>Happy coding!</p>
+
+
+        <h2>I care about your opinion</h2>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.language = "en"
+    };
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//' + "itsworthsharing" + '.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+    </div>
+        </div>
+
+    <script src="/assets/prism/prism.js"></script>
+    <script id="dsq-count-scr" src="http://itsworthsharing.disqus.com/count.js" async defer></script>
+
+<script>
+    ga=function(){ ga.q.push(arguments) };
+    ga.q=[];
+    ga.l=+new Date;
+    ga('create', "UA-46082345-1", 'auto');
+    ga('send','pageview');
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+<script>
+    !function(f,b,e,v,n,t,s){ if(f.fbq)return;n=f.fbq=function(){ n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', "201338863559186");
+    fbq('track', 'PageView');
+</script>
+    </body>
+</html>

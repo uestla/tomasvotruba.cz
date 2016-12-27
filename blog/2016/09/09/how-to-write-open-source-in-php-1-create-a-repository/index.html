@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>How to write open-source in PHP 1: Create a repository on Github | Tomáš Votruba</title>
+        <meta charset="utf-8">
+        <meta name="robots" content="index, follow">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="How to write open-source in PHP 1: Create a repository on Github">
+    <meta property="og:description" content="Do you have some code you want to share but you don&#039;t know exactly how? Well, writing open-source is complex process.
+In this series, I&#039;ll break it down to the smallest steps possible, so that you 
+can start your own OS project with zero-knowledge (OS = open-source).
+Ready? Let&#039;s start with creating a Github repository!">
+    <meta property="og:url" content="http://www.tomasvotruba.cz/blog/2016/09/09/how-to-write-open-source-in-php-1-create-a-repository">
+        <meta property="og:image" content="http://www.tomasvotruba.cz/assets/images/posts/thumbnail/open-source.jpg">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="How to write open-source in PHP 1: Create a repository on Github">
+    <meta name="twitter:description" content="Do you have some code you want to share but you don&#039;t know exactly how? Well, writing open-source is complex process.
+In this series, I&#039;ll break it down to the smallest steps possible, so that you 
+can start your own OS project with zero-knowledge (OS = open-source).
+Ready? Let&#039;s start with creating a Github repository!">
+        <meta name="twitter:image" content="http://www.tomasvotruba.cz/assets/images/posts/thumbnail/open-source.jpg">
+
+        <link rel="alternate" type="application/rss+xml" title="Tomáš Votruba Blog RSS" href="/rss.xml">
+
+        <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <link href="/assets/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+        <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
+
+    <link href="/assets/prism/prism.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+<nav>
+    <div class="container">
+        <ul class="hidden-xs">
+            <li class="logo">
+                <a href="/">Tomáš Votruba</a>
+            </li>
+            <li>
+                <a href="/skoleni">Školím a mentoruji</a>
+            </li>
+            <li>
+                <a href="/reference">Spokojení klienti</a>
+            </li>
+            <li class="active">
+                <a href="/blog">Blog</a>
+            </li>
+            <li>
+                <a href="/cenik">Ceník</a>
+            </li>
+            <li>
+                <a href="/kontakt">Kontakt</a>
+            </li>
+        </ul>
+
+        <div id="mobile-menu" class="row text-center hidden-md hidden-sm hidden-lg">
+            <a href="/" class="col-xs-3">
+                <em class="fa fa-home"></em>
+                <br>
+                Začni
+            </a>
+            <a href="/skoleni" class="col-xs-3">
+                <em class="fa fa-thumbs-up"></em>
+                <br>
+                Školím
+            </a>
+            <a href="/blog" class="col-xs-3 active">
+                <em class="fa fa-book"></em>
+                <br>
+                Píšu blog
+            </a>
+            <a href="/kontakt" class="col-xs-3">
+                <em class="fa fa-phone"></em>
+                <br>
+                Kontakt
+            </a>
+        </div>
+    </div>
+</nav>
+
+        <div class="mainContent">
+    <div class="container" id="post">
+        <h1>How to write open-source in PHP 1: Create a repository on Github</h1>
+
+<ul class="list-inline">
+    <li>
+        <em class="fa fa-clock-o fa-fw"></em>
+        <strong>3 min</strong>
+    </li>
+
+    <li>
+        <em class="fa fa-calendar fa-fw"></em>
+        <time datetime="2016-09-Fri">
+                9. 9.
+        </time>
+    </li>
+
+    <li>
+        <em class="fa fa-fw fa-comments"></em>
+        <a href="http://tomasvotruba.cz/blog/2016/09/09/how-to-write-open-source-in-php-1-create-a-repository/#disqus_thread">X</a>
+        comments
+    </li>
+
+    <li>
+        <em class="fa fa-fw fa-github"></em>
+
+        <a href="https://github.com/TomasVotruba/tomasvotruba.cz/edit/master/source/_posts/2016/2016-09-09-how-to-write-open-source-in-php-1-create-a-repository.md">
+            Send PR
+        </a>
+    </li>
+</ul>
+
+        <div class="panel panel-default">
+            <div class="panel-body perex">
+                Do you have some code you want to share but you don't know exactly how? Well, writing open-source is complex process.
+In this series, I'll break it down to <strong>the smallest steps possible</strong>, so that you 
+can <strong>start your own OS project with zero-knowledge</strong> (OS = open-source).
+Ready? Let's start with creating a Github repository!
+            </div>
+        </div>
+
+        
+
+<h2>Meet Github, OS's best friend</h2>
+
+<p>If not already, <a href="http://github.com">register on Github</a>. It's a place where all open-source lives and breathes. For free!</p>
+
+<p>Then create a repository with <a href="https://github.com/new">New Repository</a> button.</p>
+
+<h3>Name repository well... well how?</h3>
+
+<ul>
+<li>name should be explicit</li>
+<li>noun... well pretty <strong>same rules as for class naming</strong></li>
+<li>if you wrap or extend some other service/package, prefix with it</li>
+<li>it's like headline &ndash; everyone should have clue what it does without peaking on readme</li>
+<li>don't be cool... you already are!</li>
+</ul>
+
+<p>Nice theory. What about some examples?</p>
+
+<ul>
+<li><strong>good names</strong>: <em>Datagrid</em>, <em>ImageResizer</em>, <em>DoctrineFilters</em></li>
+<li><strong>bad names</strong>: <em>TomasPackage</em>, <em>DoctrineExtras</em>, <em>Translate</em></li>
+</ul>
+
+<p>That's all you need now. Hit "Create repository" and you are done!</p>
+
+<h2>Little book of git</h2>
+
+<p>Now we practise first few git lines.</p>
+
+<h3>Get to the right place</h3>
+
+<p>Move to the directory, where you want to host your package locally.
+Open command line or Terminal in PHPStorm. Actually the PHPStorm way will open terminal already in right place. So you don't have to browse directories via <code>cd</code> command.
+And call these commands there.</p>
+
+<p>Do you know git?</p>
+
+<p>Just follow commands, that appeared on your Github repository and <a href="#your-code-is-online">skip to next headline</a>.</p>
+
+<pre><code>echo "# OpenSourcePackageDemo" &gt;&gt; README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin git@github.com:TomasVotruba/OpenSourcePackageDemo.git
+git push -u origin master
+</code></pre>
+
+<h3>You don't understand those geek lines? I'll explain</h3>
+
+<p>These commits can be divided into 2 groups:</p>
+
+<ol>
+<li>to setup repository, <strong>just once</strong></li>
+<li>to add some code, <strong>use repeatedly</strong></li>
+</ol>
+
+<h4>1. Setup repository</h4>
+
+<p>Create an empty repository git repository</p>
+
+<pre><code>git init
+</code></pre>
+
+<p>Add ONLINE address where we want publish your code</p>
+
+<pre><code>git remote add origin git@github.com:TomasVotruba/OpenSourcePackageDemo.git
+</code></pre>
+
+<h4>2. Add some code</h4>
+
+<p>Create a file README.md and add "Unziping Package" in it (this is just command line for geeks, I do this manually in my PHPStorm of course)</p>
+
+<pre><code>echo "Unziping Package" &gt;&gt; README.md
+</code></pre>
+
+<p>Tell git to NOTICE this file to be added later</p>
+
+<pre><code>git add README.md
+</code></pre>
+
+<p>Group all NOTICED files to single COMMIT (group of changes)</p>
+
+<pre><code>git commit -m "first commit"
+</code></pre>
+
+<p>Send ALL COMMITS online. Now your local system and Github repository are synced 1:1</p>
+
+<pre><code>git push -u origin master
+</code></pre>
+
+<p><a name="your-code-is-online"></a></p>
+
+<h2>Your code is online!</h2>
+
+<p>Just feel the smell of success.</p>
+
+<hr>
+
+<h2>Do you want get deeper than that? Check the Checklist (~2 min)</h2>
+
+<p>Fast and clear? Go to <a href="http://phppackagechecklist.com/">PHP Package Checklist</a>, that is easy to read and easy to follow.
+This helped me to integrate workflow to all my packages in the start. I've selected <a href="http://phppackagechecklist.com/#1,2,3,4,6,7,11,12,13">9 most important points</a>.</p>
+
+<p>Some of them I've already mentioned. Other will follow in next 2 articles.</p>
+
+<p>Before creating next package, just go trough it to remind yourself what is most relevant.</p>
+
+<hr>
+
+<h2>So our first step is behind us</h2>
+
+<p>What have you learned today?</p>
+
+<ul>
+<li>That OS stands for open-source. You can also find <em>OSS</em> as for <em>open-source software</em>.</li>
+<li>How to <strong>create proper OS repository</strong>.</li>
+<li>How to <strong>add few lines there with git</strong>.</li>
+</ul>
+
+<h2>What is coming next?</h2>
+
+<ul>
+<li>How does package skeleton make your work much easier.</li>
+<li>What are <strong>repository meta files</strong>.</li>
+<li>How and why to <strong>use badges</strong>.</li>
+</ul>
+
+<hr>
+
+<h2>Hate me, please!</h2>
+
+<p>Did you came across some error or wtf? Is it boring, too long or too vague?
+Just write me a comment. I want to make this series bulletproof and as much as helpful as possible.</p>
+
+<p><strong>You will help thousands of others if you help me to fix one issue.</strong></p>
+
+<p>Thank you!</p>
+
+
+        <h2>I care about your opinion</h2>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.language = "en"
+    };
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//' + "itsworthsharing" + '.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+    </div>
+        </div>
+
+    <script src="/assets/prism/prism.js"></script>
+    <script id="dsq-count-scr" src="http://itsworthsharing.disqus.com/count.js" async defer></script>
+
+<script>
+    ga=function(){ ga.q.push(arguments) };
+    ga.q=[];
+    ga.l=+new Date;
+    ga('create', "UA-46082345-1", 'auto');
+    ga('send','pageview');
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+<script>
+    !function(f,b,e,v,n,t,s){ if(f.fbq)return;n=f.fbq=function(){ n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', "201338863559186");
+    fbq('track', 'PageView');
+</script>
+    </body>
+</html>

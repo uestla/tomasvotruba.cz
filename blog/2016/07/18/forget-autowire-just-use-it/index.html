@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Forget "autowire" and just use it | Tomáš Votruba</title>
+        <meta charset="utf-8">
+        <meta name="robots" content="index, follow">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Forget &quot;autowire&quot; and just use it">
+    <meta property="og:description" content="Autowiring is a great feature that was added in Symfony 2.8. It moves Dependency Injection pattern to the next level.
+If you want to use it to its full potential, you still have to add 1 extra line to every service configuration.
+Today I will show you, how to get rid of that line.">
+    <meta property="og:url" content="http://www.tomasvotruba.cz/blog/2016/07/18/forget-autowire-just-use-it">
+        <meta property="og:image" content="http://www.tomasvotruba.cz/assets/images/posts/thumbnail/symfony.png">
+
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Forget &quot;autowire&quot; and just use it">
+    <meta name="twitter:description" content="Autowiring is a great feature that was added in Symfony 2.8. It moves Dependency Injection pattern to the next level.
+If you want to use it to its full potential, you still have to add 1 extra line to every service configuration.
+Today I will show you, how to get rid of that line.">
+        <meta name="twitter:image" content="http://www.tomasvotruba.cz/assets/images/posts/thumbnail/symfony.png">
+
+        <link rel="alternate" type="application/rss+xml" title="Tomáš Votruba Blog RSS" href="/rss.xml">
+
+        <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+        <link href="/assets/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+        <link href="/assets/css/style.css" rel="stylesheet" type="text/css">
+
+    <link href="/assets/prism/prism.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+<nav>
+    <div class="container">
+        <ul class="hidden-xs">
+            <li class="logo">
+                <a href="/">Tomáš Votruba</a>
+            </li>
+            <li>
+                <a href="/skoleni">Školím a mentoruji</a>
+            </li>
+            <li>
+                <a href="/reference">Spokojení klienti</a>
+            </li>
+            <li class="active">
+                <a href="/blog">Blog</a>
+            </li>
+            <li>
+                <a href="/cenik">Ceník</a>
+            </li>
+            <li>
+                <a href="/kontakt">Kontakt</a>
+            </li>
+        </ul>
+
+        <div id="mobile-menu" class="row text-center hidden-md hidden-sm hidden-lg">
+            <a href="/" class="col-xs-3">
+                <em class="fa fa-home"></em>
+                <br>
+                Začni
+            </a>
+            <a href="/skoleni" class="col-xs-3">
+                <em class="fa fa-thumbs-up"></em>
+                <br>
+                Školím
+            </a>
+            <a href="/blog" class="col-xs-3 active">
+                <em class="fa fa-book"></em>
+                <br>
+                Píšu blog
+            </a>
+            <a href="/kontakt" class="col-xs-3">
+                <em class="fa fa-phone"></em>
+                <br>
+                Kontakt
+            </a>
+        </div>
+    </div>
+</nav>
+
+        <div class="mainContent">
+    <div class="container" id="post">
+        <h1>Forget "autowire" and just use it</h1>
+
+<ul class="list-inline">
+    <li>
+        <em class="fa fa-clock-o fa-fw"></em>
+        <strong>2 min</strong>
+    </li>
+
+    <li>
+        <em class="fa fa-calendar fa-fw"></em>
+        <time datetime="2016-07-Mon">
+                18. 7.
+        </time>
+    </li>
+
+    <li>
+        <em class="fa fa-fw fa-comments"></em>
+        <a href="http://tomasvotruba.cz/blog/2016/07/18/forget-autowire-just-use-it/#disqus_thread">X</a>
+        comments
+    </li>
+
+    <li>
+        <em class="fa fa-fw fa-github"></em>
+
+        <a href="https://github.com/TomasVotruba/tomasvotruba.cz/edit/master/source/_posts/2016/2016-07-18-forget-autowire-just-use-it.md">
+            Send PR
+        </a>
+    </li>
+</ul>
+
+        <div class="panel panel-default">
+            <div class="panel-body perex">
+                Autowiring is a great feature that was added in Symfony 2.8. It moves Dependency Injection pattern to the next level.
+If you want to use it to its full potential, you still have to add 1 extra line to every service configuration.
+Today I will show you, how to get rid of that line.
+            </div>
+        </div>
+
+        
+
+<h2>When to autowire?</h2>
+
+<p>If you use autowiring daily, you might came across this thinking process before you place <code>autowired: true</code> to your config:</p>
+
+<p><em>1) Has this service constructor dependency?</em></p>
+
+<ul>
+<li>No => skip</li>
+<li>Yes => go on</li>
+</ul>
+
+<p><em>2) Is it object?</em></p>
+
+<ul>
+<li>No => skip</li>
+<li>Yes => go on</li>
+</ul>
+
+<p><em>3) Is it unique service type?</em></p>
+
+<ul>
+<li>No => add <code>autowiring_types</code> for specific name to required service, <a href="https://github.com/symfony/symfony/issues/17783">which is pretty difficult at the moment</a></li>
+<li>Yes => autowire</li>
+</ul>
+
+<p><em>4) Has the constructor changed during development?</em></p>
+
+<ul>
+<li><p>Start from point 1.</p></li>
+<li><p>And some more for edge cases.</p></li>
+</ul>
+
+<h2>Seems like function... Could this be automated?</h2>
+
+<p>You are right! <strong>It can be automated.</strong></p>
+
+<p>This is exactly what <a href="https://github.com/Symplify/DefaultAutowire">Symplify/DefaultAutowire</a> bundle does.</p>
+
+<p>Apart handling feature above for you, it will turn this...</p>
+
+<pre><code class="language-yaml"># app/config/config.yml
+services:
+    price_calculator:
+        class: PriceCalculator
+        autowire: true
+
+    product_repository:
+        class: ProductRepository
+        autowire: true
+
+    user_factory:
+        class: UserFactory
+        autowire: true
+</code></pre>
+
+<p>...into this:</p>
+
+<pre><code class="language-yaml"># app/config/config.yml
+services:
+    price_calculator:
+        class: PriceCalculator
+
+    product_repository:
+        class: ProductRepository
+
+    user_factory:
+        class: UserFactory
+</code></pre>
+
+<h2>Get It Done in 2 steps</h2>
+
+<h3>1. Install package</h3>
+
+<pre><code class="language-yaml">composer require symplify/default-autowire
+</code></pre>
+
+<h3>2. Register bundle</h3>
+
+<pre><code class="language-php">// app/AppKernel.php
+class AppKernel extends Kernel
+{
+    public function registerBundles()
+    {
+        $bundles = [
+            new Symplify\DefaultAutowire\SymplifyDefaultAutowireBundle(),
+            // ...
+        ];
+    }
+}
+</code></pre>
+
+<p>And that's it!</p>
+
+<p>For further use, <strong>just check Readme for <a href="https://github.com/Symplify/DefaultAutowire">Symplify/DefaultAutowire</a>.</strong></p>
+
+
+        <h2>I care about your opinion</h2>
+
+<div id="disqus_thread"></div>
+
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.language = "en"
+    };
+
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//' + "itsworthsharing" + '.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+    </div>
+        </div>
+
+    <script src="/assets/prism/prism.js"></script>
+    <script id="dsq-count-scr" src="http://itsworthsharing.disqus.com/count.js" async defer></script>
+
+<script>
+    ga=function(){ ga.q.push(arguments) };
+    ga.q=[];
+    ga.l=+new Date;
+    ga('create', "UA-46082345-1", 'auto');
+    ga('send','pageview');
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+<script>
+    !function(f,b,e,v,n,t,s){ if(f.fbq)return;n=f.fbq=function(){ n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+            document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', "201338863559186");
+    fbq('track', 'PageView');
+</script>
+    </body>
+</html>

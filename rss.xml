@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0"
+    xmlns:content="http://purl.org/rss/1.0/modules/content/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:atom="http://www.w3.org/2005/Atom"
+>
+    <channel>
+        <title>Tomáš Votruba Blog</title>
+        <link>http://www.tomasvotruba.cz/blog/</link>
+        <description>PHP, Communities and Communication posts by Tomáš Votruba</description>
+        <pubDate>Tue, 27 Dec 2016 22:53:39 +0000</pubDate>
+        <atom:link href="http://www.tomasvotruba.cz/rss.xml" rel="self" type="application/rss+xml"></atom:link>
+
+                <lastBuildDate>Sat, 24 Dec 2016 00:00:00 +0000</lastBuildDate>
+
+            <item>
+                <title><![CDATA[ How to avoid @inject thanks to Decorator feature in Nette ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/12/24/how-to-avoid-inject-thanks-to-decorator-feature-in-nette</link>
+                <description><![CDATA[ I often find @inject being overused in projects I review while mentoring. They often bring less writing, but in exchange they break SOLID principles. Today I will show you solution that will keep your code both small and clean - Decorator feature in Nette. ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/12/24/how-to-avoid-inject-thanks-to-decorator-feature-in-nette</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Sat, 24 Dec 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/12/24/how-to-avoid-inject-thanks-to-decorator-feature-in-nette#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ Decouple Controller from Symfony using Traits ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/12/12/decouple-controller-from-symfony-using-smart-traits</link>
+                <description><![CDATA[ If you start using controllers as services, you still often need helpers methods of Controller from FrameworkBundle. So your code still depends on service locator and decoupling is not really happening.Today I will show you how to remove the dependency on Controller and keep those fancy methods at the same time. ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/12/12/decouple-controller-from-symfony-using-smart-traits</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Mon, 12 Dec 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/12/12/decouple-controller-from-symfony-using-smart-traits#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ Jak se vypořádat s hejty v komentářích ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/12/09/jak-se-vyporadat-s-hejty-v-komentarich</link>
+                <description><![CDATA[ Na to se mě včera zeptal už asi pátý člověk. Jak se vypořádat s tím, když píšu článek, Tweetuju, prostě dělám bohulibou osvětu dobrým věcem, a někomu se to nelíbí a háže na mě špínu? ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/12/09/jak-se-vyporadat-s-hejty-v-komentarich</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Fri, 09 Dec 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/12/09/jak-se-vyporadat-s-hejty-v-komentarich#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ How to Use Symfony Bundles in Nette Without Rewriting DI Logic ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/10/05/how-to-use-symfony-bundles-in-nette-without-rewriting-di-logic</link>
+                <description><![CDATA[ Every framework has its own unique Dependency Injection Container (DIC), where you register your services. Imagine a set of special glues that are required to add the same paper on different surfaces. Today I will show you how to use universal glue for Nette surface. ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/10/05/how-to-use-symfony-bundles-in-nette-without-rewriting-di-logic</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Wed, 05 Oct 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/10/05/how-to-use-symfony-bundles-in-nette-without-rewriting-di-logic#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ Symfony komunita roste na PéHáPkaře a otevírá se všem PHP programátorům ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/09/26/symfony-komunita-roste-na-pehapkare-a-otevira-se-vsem-php-programatorum</link>
+                <description><![CDATA[ Symfony komunita mění svůj název, jinak vše zůstane stejné jako dosud.
+Říkáš si proč? To se dnes dozvíš.  ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/09/26/symfony-komunita-roste-na-pehapkare-a-otevira-se-vsem-php-programatorum</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Mon, 26 Sep 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/09/26/symfony-komunita-roste-na-pehapkare-a-otevira-se-vsem-php-programatorum#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ How to get more than Request in Controller Action ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/09/19/how-to-get-more-than-request-in-controller-action</link>
+                <description><![CDATA[ You already know you can get Request object in your controller action. Cool, but there is more. 
+In Symfony 3.1 is new Action Argument Resolving feature,
+so you can get any service you need. With a bit of work. Today I will show you how.  ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/09/19/how-to-get-more-than-request-in-controller-action</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Mon, 19 Sep 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/09/19/how-to-get-more-than-request-in-controller-action#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ How to write open-source in PHP 2: Rise value of your package with help of skeleton ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/09/16/how-to-write-open-source-in-php-2-enjoy-skeletons</link>
+                <description><![CDATA[ After creating a repo, we have to fill it with something useful. Our code! Of course, but we also need some metadata files.
+What are they for? Is there some prepared code we can use? What are badges for? I will answer all these questions today.  ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/09/16/how-to-write-open-source-in-php-2-enjoy-skeletons</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Fri, 16 Sep 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/09/16/how-to-write-open-source-in-php-2-enjoy-skeletons#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ How to write open-source in PHP 1: Create a repository on Github ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/09/09/how-to-write-open-source-in-php-1-create-a-repository</link>
+                <description><![CDATA[ Do you have some code you want to share but you don&#039;t know exactly how? Well, writing open-source is complex process.
+In this series, I&#039;ll break it down to the smallest steps possible, so that you 
+can start your own OS project with zero-knowledge (OS = open-source).
+Ready? Let&#039;s start with creating a Github repository! ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/09/09/how-to-write-open-source-in-php-1-create-a-repository</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Fri, 09 Sep 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/09/09/how-to-write-open-source-in-php-1-create-a-repository#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ Poslechni si podcast o PHP a sebevzdělávání ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/08/15/podcast-o-php-a-sebevzdelavani</link>
+                <description><![CDATA[  ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/08/15/podcast-o-php-a-sebevzdelavani</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Mon, 15 Aug 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/08/15/podcast-o-php-a-sebevzdelavani#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ Forget &quot;autowire&quot; and just use it ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/07/18/forget-autowire-just-use-it</link>
+                <description><![CDATA[ Autowiring is a great feature that was added in Symfony 2.8. It moves Dependency Injection pattern to the next level.
+If you want to use it to its full potential, you still have to add 1 extra line to every service configuration.
+Today I will show you, how to get rid of that line. ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/07/18/forget-autowire-just-use-it</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Mon, 18 Jul 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/07/18/forget-autowire-just-use-it#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ Filters Pattern in Nette Database ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/06/17/filters-pattern-in-nette-database</link>
+                <description><![CDATA[ You want to delete comments, so your readers won&#039;t see any spam or violent content.
+But you want to see them in administration. So you would have to create 2 different methods.
+Today I will show you, how to make only single one. ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/06/17/filters-pattern-in-nette-database</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Fri, 17 Jun 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/06/17/filters-pattern-in-nette-database#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ Decouple Your Doctrine Filters ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/04/30/decouple-your-doctrine-filters</link>
+                <description><![CDATA[ Doctrine filters are powerful tool. Yet their registration and management are bit overcomplicated. Today I will show you how to decouple them to standalone services that can take care of everything you need. ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/04/30/decouple-your-doctrine-filters</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Sat, 30 Apr 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/04/30/decouple-your-doctrine-filters#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ Autowired controllers as services for lazy people ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/03/10/autowired-controllers-as-services-for-lazy-people</link>
+                <description><![CDATA[ With new autowiring feature in Symfony 2.8+, it is now easier to manage dependencies for services. But what about for controllers? Unfortunately, there are 3 annoying steps you have to do. Today I will show you, how to reduce them to 0. ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/03/10/autowired-controllers-as-services-for-lazy-people</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Thu, 10 Mar 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/03/10/autowired-controllers-as-services-for-lazy-people#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ Kolik lidí je potřeba k vytvoření jedné komunity? ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/03/03/kolik-lidi-je-potreba-k-vytvoreni-jedne-komunity</link>
+                <description><![CDATA[ CEO České Symfony komunity. Vedoucí, evangelista, ten co dělá tu Symfony komunitu... Tak mi mnozí z vás občas říkají. Já se však pořád nemůžu zbavit pocitu, že za Symfony komunitou, tak jak ji známe v její dnešní podobě, nejsou vidět ty desítky dalších tváří, na kterých to celé stojí. Tváří lidí, kteří k ní přispěli malým či velkým dílem, kteří mě nakopli, a kteří mi pomáhají víc, než si sami vůbec uvědomují. Bez nich by tady totiž dnes nebylo vůbec nic. A proto bych vám o nich dnes rád řekl. ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/03/03/kolik-lidi-je-potreba-k-vytvoreni-jedne-komunity</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Thu, 03 Mar 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/03/03/kolik-lidi-je-potreba-k-vytvoreni-jedne-komunity#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ Modular Routing in Symfony ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2016/02/25/modular-routing-in-symfony</link>
+                <description><![CDATA[ Modular routing in Symfony is bounded to routing.yml. Adding few lines for each new module can create large mess. Can we make it bit simpler? Sure we do and I will show you how. ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2016/02/25/modular-routing-in-symfony</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Thu, 25 Feb 2016 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2016/02/25/modular-routing-in-symfony#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ To nejlepší ze SymfonyConu 2015 ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2015/12/20/to-nejlepsi-ze-symfonyconu-2015</link>
+                <description><![CDATA[ Každoročně pořádaný SymfonyCon se letos konal v Paříži. Přes všechny útoky Paříž žije dál. Možná o to víc. Důkazem toho může být i 1000 návštěvníků, kteří na akci dorazili. Čechy jsem reprezentoval spolu s Dennisem, a taky Petrem a Kubou z Lmc.eu ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2015/12/20/to-nejlepsi-ze-symfonyconu-2015</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Sun, 20 Dec 2015 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2015/12/20/to-nejlepsi-ze-symfonyconu-2015#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ Jak si levně udělat živý web, i když nejsi ajťák ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2015/11/16/jak-si-udelat-web-i-bez-ajtaka</link>
+                <description><![CDATA[ Znáš pojmy jako hosting, doména, HTML, CSS, FTP, šablona, Wordpress nebo Github? Máš vyhráno, dál nečti a běž se podívat na svou krásnou online vizitku. ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2015/11/16/jak-si-udelat-web-i-bez-ajtaka</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Mon, 16 Nov 2015 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2015/11/16/jak-si-udelat-web-i-bez-ajtaka#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ 4 žhavé novinky v Symfony 3 ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2015/11/09/4-zhave-novinky-v-symfony-3</link>
+                <description><![CDATA[ V listopadu 2015 má kromě PHP 7 a Drupalu 8, vyjít i Symfony 3. Jaké přináší změny a novinky? ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2015/11/09/4-zhave-novinky-v-symfony-3</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Mon, 09 Nov 2015 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2015/11/09/4-zhave-novinky-v-symfony-3#disqus_thread</comments>
+            </item>
+
+            <item>
+                <title><![CDATA[ Ovládni Doctrine migrace v Nette ]]></title>
+                <link>http://www.tomasvotruba.cz/blog/2015/11/02/ovladni-doctrine-migrace-v-nette</link>
+                <description><![CDATA[ Pokud používáte Doctrine, Nette a potřebujete měnit databázi, budou se vám hodit migrace. ]]></description>
+                <guid isPermaLink="false">http://www.tomasvotruba.cz/blog/2015/11/02/ovladni-doctrine-migrace-v-nette</guid>
+                <dc:creator><![CDATA[ Tomáš Votruba ]]></dc:creator>
+                <pubDate>Mon, 02 Nov 2015 00:00:00 +0000</pubDate>
+                <comments>http://www.tomasvotruba.cz/blog/2015/11/02/ovladni-doctrine-migrace-v-nette#disqus_thread</comments>
+            </item>
+    </channel>
+</rss>
